@@ -6,15 +6,15 @@ import { ItemText } from "../../components/Text/ItemText.jsx";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <header className="top-0 left-0 z-50 w-full h-[8rem] flex-col
- bg-zinc-100 flex items-center content-center justify-center px-6 py-4 text-black shadow-md">
-  <ItemText content="Productos api" style='text-7xl mb-5' />
-
-
-      <Navbar style='flex justify-between'>  
-        
-      </Navbar>
+    <header className="top-0 left-0 z-50 w-full flex flex-col bg-zinc-100 text-black shadow-md">
+      <div className="w-full flex items-center justify-between px-6 py-4">
+        <ItemText content="Productos API" style="text-3xl md:text-5xl font-bold" />
+      </div>
     </header>
   );
 };
