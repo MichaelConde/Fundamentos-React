@@ -1,29 +1,31 @@
-
+import { useEffect, useState } from 'react';
 import { Main } from '../../layout/Main/Main';
-import { useState } from 'react';
 import { Card } from '../../layout/Card/Card';
-export const Home = () => {
-  const [characters, setCharacters] = useState([])
-const URL = 'https://fakestoreapi.com/products'
 
-  const handleGetCharacters = async () => {
-    const response = await fetch(URL)
-    const data = await response.json()
-    setCharacters(data)
-  }
+export const Home = () => {
+  const [products, setProducts] = useState([]);
+  const URL = 'https://fakestoreapi.com/products';
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []); // El array vacío asegura que se ejecute solo una vez al montar el componente
 
   return (
-    
-      <Main style="w-full h-screen flex flex-col items-center">
- <button onClick={handleGetCharacters}>Traer prductos</button>
+    <Main style="w-full h-screen flex flex-col items-center p-4">
+      <h1 className="text-xl font-bold mb-4">Productos disponibles</h1>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {
-          characters.map(character => (
-            <Card key={character.id} {...character} />
+          products.map(product => (
+            <Card key={product.id} {...product} />
           ))
         }
       </section>
-      </Main>
-    
+    </Main>
   );
 }
