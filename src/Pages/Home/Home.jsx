@@ -14,7 +14,7 @@ export const Home = () => {
     };
 
     fetchProducts();
-  }, []); // El array vacío asegura que se ejecute solo una vez al montar el componente
+  }, []); 
 
   return (
     <Main style="w-full h-screen flex flex-col items-center p-4">
